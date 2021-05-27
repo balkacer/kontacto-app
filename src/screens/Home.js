@@ -17,7 +17,7 @@ const httpSv = new HttpService();
 
 const getData = async () => {
   httpSv
-    .get("user", "ef852034-0a01-4d4e-a55c-607a61e68c86")
+    .get("user", "f83a2d6b-055a-4cdd-84e1-14ca6f2ee279")
     .then((res) => {
       console.log(res.data.message);
       Alerts[Platform.OS](res.data.message);
