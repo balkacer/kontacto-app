@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "kontacto-front",
-    "slug": "kontacto-front",
+    "name": "kontacto-app",
+    "slug": "kontacto-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
