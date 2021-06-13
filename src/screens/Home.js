@@ -1,46 +1,24 @@
-import React from "react";
-import { View, Text, ToastAndroid, Platform } from "react-native";
-import { Color, Style } from "../tools";
-import Button from "../components/Button";
+import React, { Component } from "react";
+import { View, Text, ImageBackground } from "react-native";
+import { Style } from "../tools";
 import HttpService from "../service";
+import { Button } from "../components";
 
-const Alerts = {
-  android: (msg) => {
-    ToastAndroid.show(msg, ToastAndroid.SHORT);
-  },
-  web: (msg) => {
-    alert(msg);
-  },
-};
+export default class HomeScreen extends Component {
 
-const httpSv = new HttpService();
+  httpSv = new HttpService();
 
-const getData = async () => {
-  httpSv
-    .get("user", "f83a2d6b-055a-4cdd-84e1-14ca6f2ee279")
-    .then((res) => {
-      console.log(res.data.message);
-      Alerts[Platform.OS](res.data.message);
-    })
-    .catch(() => {
-      console.log("User Not Found!");
-      Alerts[Platform.OS]("User Not Found!");
-    });
-};
-
-export default function HomeScreen({ navigation }) {
-  return (
-    <View style={Style.container}>
-      <Button
-        caption="Lista de productos"
-        color={Color.INPUT_ONE}
-        onPress={() => navigation.navigate("Products")}
-      />
-      <Button
-        caption="Show Toast"
-        color={Color.CARIBBEAN_GREEN}
-        onPress={getData}
-      />
-    </View>
-  );
+  render () {
+    return (
+      <ImageBackground
+        source={{ uri: 'https://i.pinimg.com/originals/20/79/03/2079033abc8314be554f9d24f562a199.jpg' }}
+        style={{ width: "100%", height: "100%" }}
+      >
+        <View style={Style.screen}>
+          <Text style={{color: "#FFF"}}>Home</Text>
+          <Button caption="Sign Up" onPress={() => this.props.navigation.navigate('SignUp')}/>
+        </View>
+      </ImageBackground>
+    );
+  }
 }
