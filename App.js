@@ -12,25 +12,21 @@ export default class App extends Component {
 
   async componentDidMount() {
     await Font.loadAsync({
-      'GeosansLight': require('./assets/fonts/GeosansLight.ttf'),
-      'Cocogoose-Classic-Medium': require('./assets/fonts/Cocogoose-Classic-Medium.ttf'),
-      'Cocogoose-Classic-Bold': require('./assets/fonts/Cocogoose-Classic-Bold.ttf')
+      'Louis George Cafe': require('./assets/fonts/Louis_George_Cafe.ttf'),
+      'Louis George Cafe Light': require('./assets/fonts/Louis_George_Cafe_Light.ttf'),
+      'Louis George Cafe Bold': require('./assets/fonts/Louis_George_Cafe_Bold.ttf')
     });
     this.setState({ isFontLoaded: true })
   }
 
   render() {
-    if (!this.state.isFontLoaded) {
-      return (
-         <AppLoading />
-      );
-    }
-
-    return (      
-      <>
-        <Navigator />
-        <StatusBar style="dark" />
-      </>
+    return (
+      !this.state.isFontLoaded 
+        ? <AppLoading />
+        : <>
+            <Navigator />
+            <StatusBar style="light" />
+          </>
     );
   }
 }
