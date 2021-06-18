@@ -13,11 +13,13 @@ const Styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     bottom: 0,
-    height: 604
+    height: 522
   },
   input: {
+    fontFamily: 'Louis George Cafe Bold',
+    color: Theme.colorBlack,
     borderRadius: 15,
-    backgroundColor: Theme.colorInputs,
+    backgroundColor: Theme.colorWhite,
     marginBottom: 20,
     paddingHorizontal: 20,
     paddingVertical: 15,
@@ -29,11 +31,13 @@ const Styles = StyleSheet.create({
     height: 150,
     borderRadius: 150,
     margin: 15,
-    backgroundColor: Theme.colorLight
+    backgroundColor: Theme.colorWhite,
+    borderWidth: 2,
+    borderColor: Theme.colorPrimary
   },
   btn: {
     borderRadius: 15,
-    backgroundColor: Theme.colorBtnDefault,
+    backgroundColor: Theme.colorDefaultComponentBackground,
     marginBottom: 20,
     padding: 20,
     width: "100%",
@@ -42,24 +46,24 @@ const Styles = StyleSheet.create({
   },
   btnText: {
     fontSize: 16,
-    color: Theme.colorBtnTextDefault,
-    fontWeight: "bold",
+    color: Theme.colorDefaultComponentText,
+    fontFamily: 'Louis George Cafe Bold',
     marginHorizontal: 'auto'
   },
   btnPrimary: {
     backgroundColor: Theme.colorPrimary
   },
+  btnSecondary: {
+    backgroundColor: Theme.colorSecondary
+  },
   btnTextPrimary: {
-    color: Theme.colorLight
+    color: Theme.colorBlack
   },
-  btnDefaultDisabled: {
-    backgroundColor: Theme.colorBtnDisabled
+  btnDisabled: {
+    backgroundColor: Theme.colorDisabled
   },
-  btnTextDisabled: {
-    color: Theme.colorBtnTextDisabled
-  },
-  btnSuccess: {
-    backgroundColor: Theme.colorSuccess
+  btnDisabledText: {
+    color: Theme.colorDisabledText
   },
   btnContainer: {
     position: 'absolute',

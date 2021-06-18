@@ -1,18 +1,15 @@
 import Color from "../tools/colors";
 
 const Theme = {
-  colorPrimary: Color.PRIMARY_BLUE,
-  colorSuccess: Color.CARIBBEAN_GREEN,
-  colorThird: Color.PRIMARY_BLUE,
-  colorLight: Color.GOST_WHITE,
-  colorDark: Color.ABSOLUTE_BLACK,
-  colorBackground: Color.ABSOLUTE_WHITE,
-  colorInputs: Color.GOST_WHITE,
-  colorInputsPlaceholder: Color.INPUT_TWO,
-  colorBtnDisabled: Color.GOST_WHITE,
-  colorBtnTextDisabled: Color.INPUT_TWO,
-  colorBtnDefault: Color.LIGHT_GRAY,
-  colorBtnTextDefault: Color.GOST_WHITE,
+  colorPrimary: Color.MEDIUM_AQUA_MARINE,
+  colorSecondary: Color.MIDDLE_BLUE_GREEN,
+  colorBlack: Color.SPACE_CANDENT,
+  colorWhite: Color.GHOST_WHITE,
+  colorDefaultComponentBackground: Color.QUICK_SILVER,
+  colorDefaultComponentText: Color.GHOST_WHITE,
+  colorBackground: Color.SPACE_CANDENT,
+  colorDisabled: Color.SPACE_CANDENT_DISABLED,
+  colorDisabledText: Color.SPACE_CANDENT_DISABLED_TEXT,
 };
 
 export default Theme;

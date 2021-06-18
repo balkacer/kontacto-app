@@ -1,8 +1,16 @@
 const Colors = {
+  // Black & White
   SPACE_CANDENT: "#1C1F33",
+  // Principal
   MIDDLE_BLUE_GREEN: "#7FD1B9",
-  GHOST_WHITE: "#E8E9F3",
+  POLISHED_PINE: "#68A691",
+  // Others
   QUICK_SILVER: "#A6A6A8",
+  GHOST_WHITE: "#f4f5f7",
+  SPACE_CANDENT_DISABLED: "#3E4151",
+  SPACE_CANDENT_DISABLED_TEXT: "#6b707f",
+  BLUE_CRAYOLA: "#256eff",
+  MEDIUM_AQUA_MARINE: "#3ddc97"
 };
 
 const ColorsBank = {
