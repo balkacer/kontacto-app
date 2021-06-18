@@ -1,17 +1,17 @@
 import React, { Component } from "react";
-import { View, Text, TextInput, Image, TouchableOpacity } from "react-native";
+import { View, Text, TextInput, Image } from "react-native";
 import { ToastAndroid } from 'expo';
 import { Style } from "../tools";
 import Theme from "../theme/theme";
 import HttpService from "../service";
-import { FormMultiparts } from "../components";
+import { FormMultiparts, ImagePicker } from "../components";
 
 const form = [
   [
     {
       property: 'firstName',
       label: 'First name',
-      valueType: 'text',
+      valueType: 'name',
       validations: {
         isRequired: true,
       }
@@ -19,7 +19,7 @@ const form = [
     {
       property: 'secondName',
       label: 'Second name',
-      valueType: 'text',
+      valueType: 'name',
       validations: {
         isRequired: false,
       }
@@ -27,7 +27,7 @@ const form = [
     {
       property: 'firstSurname',
       label: 'First surname',
-      valueType: 'text',
+      valueType: 'name',
       validations: {
         isRequired: true,
       }
@@ -35,7 +35,7 @@ const form = [
     {
       property: 'secondSurname',
       label: 'Second surname',
-      valueType: 'text',
+      valueType: 'name',
       validations: {
         isRequired: false,
       }
@@ -43,29 +43,36 @@ const form = [
   ],
   [
     {
-      property: 'email',
-      label: 'Email',
-      valueType: 'text',
-      validations: {
-        isRequired: true,
-        isMatchWith: ''
-      }   
-    },
-    {
-      property: 'password',
-      label: 'Pasword',
-      valueType: 'text',
+      property: 'username',
+      label: 'Username',
+      valueType: 'username',
       validations: {
         isRequired: true,
       }
     },
     {
-      property: 'password',
-      label: 'Confirm Pasword',
-      valueType: 'text',
+      property: 'email',
+      label: 'Email',
+      valueType: 'email',
       validations: {
         isRequired: true,
-        isMatchWith: ''
+      }   
+    },
+    {
+      property: 'password',
+      label: 'Pasword',
+      valueType: 'password',
+      validations: {
+        isRequired: true,
+        hasMinLengthOf: 8
+      }
+    },
+    {
+      property: 'confirmPassword',
+      label: 'Confirm Pasword',
+      valueType: 'password',
+      validations: {
+        isMatchWith: 'password'
       }
     }   
   ],
@@ -74,19 +81,28 @@ const form = [
       property: 'work',
       label: 'Work Name',
       valueType: 'text',
-      isRequiredd: true
+      validations: {
+        isRequiredd: true
+      }
     },
     {
       property: 'age',
       label: 'Age',
-      valueType: 'number',
-      isRequiredd: true
+      valueType: 'intNumber',
+      validations: {
+        isRequiredd: true,
+        hasMinValue: 10,
+        hasMaxValue: 60
+      }
     },
     {
       property: 'birthday',
       label: 'Birthday',
-      valueType: 'text',
-      isRequired: false
+      valueType: 'date',
+      validations: {
+        isRequired: false,
+        hasMinValue: 10
+      }
     },
   ]
 ]
@@ -104,47 +120,13 @@ export default class SignUpScreen extends Component {
 
   render () {
     return (
-      <View style={Style.screen}>
-        <Text style={{color: "#f00", fontSize: 34}}>Sign Up</Text>
-        <TouchableOpacity onPress={() => console.log('thing')}>
-          <Image
-            style={Style.image}
-            defaultSource={require('../../assets/img/default.png')}
-          />
-        </TouchableOpacity>
-
-        <FormMultiparts items={form}/>
+      <View style={[Style.screen, {paddingTop: 80}]}>
+        <Text style={{color: Theme.colorPrimary, fontSize: 34, fontFamily: 'Louis George Cafe Bold'}}>Sign Up</Text>
+        <View style={{paddingTop: 40, flex: 1, justifyContent: "center", alignItems: "center"}}>
+          <ImagePicker />
+          <FormMultiparts items={form} lastBtnCaption="Sign Up"/>
+        </View>
       </View>
     );
   }
 }
-
-
-{/* <TextInput
-          style={Style.input}
-          onChangeText={(text) => this.setState({firstName: text})}
-          value={this.state.firstName}
-          placeholderTextColor={Theme.colorInputsPlaceholder}
-          placeholder="First name"
-        />
-        <TextInput
-          style={Style.input}
-          onChangeText={(text) => this.setState({secondName: text})}
-          value={this.state.secondName}
-          placeholderTextColor={Theme.colorInputsPlaceholder}
-          placeholder="Second name"
-        />
-        <TextInput
-          style={Style.input}
-          onChangeText={(text) => this.setState({firstSurname: text})}
-          value={this.state.firstSurname}
-          placeholderTextColor={Theme.colorInputsPlaceholder}
-          placeholder="First surname"
-        />
-        <TextInput
-          style={Style.input}
-          onChangeText={(text) => this.setState({secondSurname: text})}
-          value={this.state.secondSurname}
-          placeholderTextColor={Theme.colorInputsPlaceholder}
-          placeholder="Second surname"
-        /> */}
