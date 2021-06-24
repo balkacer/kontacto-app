@@ -25,7 +25,7 @@ export default class App extends Component {
         ? <AppLoading />
         : <>
             <Navigator />
-            <StatusBar style="light" />
+            <StatusBar style="dark" />
           </>
     );
   }

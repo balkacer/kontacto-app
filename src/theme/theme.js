@@ -7,7 +7,7 @@ const Theme = {
   colorWhite: Color.GHOST_WHITE,
   colorDefaultComponentBackground: Color.QUICK_SILVER,
   colorDefaultComponentText: Color.GHOST_WHITE,
-  colorBackground: Color.SPACE_CANDENT,
+  colorBackground: Color.ABSOLUTE_WHITE,
   colorDisabled: Color.SPACE_CANDENT_DISABLED,
   colorDisabledText: Color.SPACE_CANDENT_DISABLED_TEXT,
 };

@@ -88,11 +88,11 @@ const form = [
     {
       property: 'age',
       label: 'Age',
-      valueType: 'intNumber',
+      valueType: 'int',
       validations: {
         isRequiredd: true,
-        hasMinValue: 10,
-        hasMaxValue: 60
+        hasMinValueOf: 10,
+        hasMaxValueOf: 60
       }
     },
     {
@@ -101,7 +101,7 @@ const form = [
       valueType: 'date',
       validations: {
         isRequired: false,
-        hasMinValue: 10
+        hasMinValueOf: 10
       }
     },
   ]
@@ -111,11 +111,12 @@ export default class SignUpScreen extends Component {
 
   httpSv = new HttpService();
 
-  postRegister = () => {
-    const user = this.state;
-    this.httpSv.post('user', user).then((res) => {
-      ToastAndroid.show(res.message, ToastAndroid.SHORT);
-    }).catch(err => console.info(err))
+  signUp = (user) => {
+    // this.httpSv.post('user', user).then((res) => {
+    //   ToastAndroid.show(res.message, ToastAndroid.SHORT);
+    // }).catch(err => console.info(err))
+
+    console.log(user);
   }
 
   render () {
@@ -124,7 +125,7 @@ export default class SignUpScreen extends Component {
         <Text style={{color: Theme.colorPrimary, fontSize: 34, fontFamily: 'Louis George Cafe Bold'}}>Sign Up</Text>
         <View style={{paddingTop: 40, flex: 1, justifyContent: "center", alignItems: "center"}}>
           <ImagePicker />
-          <FormMultiparts items={form} lastBtnCaption="Sign Up"/>
+          <FormMultiparts items={form} lastBtnCaption="Sign Up" onSubmit={(data) => {this.signUp(data)}}/>
         </View>
       </View>
     );
