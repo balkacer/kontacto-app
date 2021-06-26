@@ -1,10 +1,9 @@
-import React, { Component } from "react";
-import { View, Text, TextInput, Image } from "react-native";
-import { ToastAndroid } from 'expo';
-import { Style } from "../tools";
-import Theme from "../theme/theme";
-import HttpService from "../service";
-import { FormMultiparts, ImagePicker } from "../components";
+import React, { Component } from 'react';
+import { View, Text } from 'react-native';
+import { Style } from '../tools';
+import Theme from '../theme/theme';
+import HttpService from '../service';
+import { FormMultiparts, ImagePicker } from '../components';
 
 const form = [
   [
@@ -20,9 +19,7 @@ const form = [
       property: 'secondName',
       label: 'Second name',
       valueType: 'name',
-      validations: {
-        isRequired: false,
-      }
+      validations: null
     },
     {
       property: 'firstSurname',
@@ -36,9 +33,7 @@ const form = [
       property: 'secondSurname',
       label: 'Second surname',
       valueType: 'name',
-      validations: {
-        isRequired: false,
-      }
+      validations: null
     }
   ],
   [
@@ -56,7 +51,7 @@ const form = [
       valueType: 'email',
       validations: {
         isRequired: true,
-      }   
+      }
     },
     {
       property: 'password',
@@ -74,21 +69,19 @@ const form = [
       validations: {
         isMatchWith: 'password'
       }
-    }   
+    }
   ],
   [
     {
       property: 'work',
       label: 'Work Name',
-      valueType: 'text',
-      validations: {
-        isRequiredd: true
-      }
+      valueType: 'name',
+      validations: null
     },
     {
       property: 'age',
       label: 'Age',
-      valueType: 'int',
+      valueType: 'number',
       validations: {
         isRequiredd: true,
         hasMinValueOf: 10,
@@ -100,7 +93,6 @@ const form = [
       label: 'Birthday',
       valueType: 'date',
       validations: {
-        isRequired: false,
         hasMinValueOf: 10
       }
     },
@@ -112,20 +104,18 @@ export default class SignUpScreen extends Component {
   httpSv = new HttpService();
 
   signUp = (user) => {
-    // this.httpSv.post('user', user).then((res) => {
-    //   ToastAndroid.show(res.message, ToastAndroid.SHORT);
-    // }).catch(err => console.info(err))
-
-    console.log(user);
+    this.httpSv.post('user', user).then((res) => {
+      ToastAndroid.show(res.message, ToastAndroid.SHORT);
+    }).catch(err => ToastAndroid.show(err.message, ToastAndroid.SHORT));
   }
 
-  render () {
+  render() {
     return (
-      <View style={[Style.screen, {paddingTop: 80}]}>
-        <Text style={{color: Theme.colorPrimary, fontSize: 34, fontFamily: 'Louis George Cafe Bold'}}>Sign Up</Text>
-        <View style={{paddingTop: 40, flex: 1, justifyContent: "center", alignItems: "center"}}>
+      <View style={[Style.screen, { paddingTop: 80 }]}>
+        <Text style={{ color: Theme.colorPrimary, fontSize: 34, fontFamily: 'Louis George Cafe Bold' }}>Sign Up</Text>
+        <View style={{ paddingTop: 40, flex: 1, justifyContent: 'center', alignItems: 'center' }}>
           <ImagePicker />
-          <FormMultiparts items={form} lastBtnCaption="Sign Up" onSubmit={(data) => {this.signUp(data)}}/>
+          <FormMultiparts items={form} lastBtnCaption='Sign Up' onSubmit={data => this.signUp(data)} />
         </View>
       </View>
     );

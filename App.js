@@ -1,7 +1,6 @@
-import React, { Component } from "react";
-import { StatusBar } from "expo-status-bar";
-import { View } from "react-native";
-import Navigator from "./src/routes";
+import React, { Component } from 'react';
+import { StatusBar } from 'expo-status-bar';
+import Navigator from './src/routes';
 import * as Font from 'expo-font';
 import AppLoading from 'expo-app-loading';
 
@@ -21,12 +20,14 @@ export default class App extends Component {
 
   render() {
     return (
-      !this.state.isFontLoaded 
-        ? <AppLoading />
-        : <>
-            <Navigator />
-            <StatusBar style="dark" />
-          </>
+      <>
+        { 
+          !this.state.isFontLoaded
+          ? <AppLoading />
+          : <Navigator />
+        }
+        <StatusBar style='dark' />
+      </>
     );
   }
 }

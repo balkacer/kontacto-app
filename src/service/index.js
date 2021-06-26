@@ -1,5 +1,5 @@
-import Environments from "../env";
-import axios from "axios";
+import Environments from '../env';
+import axios from 'axios';
 
 export default class HttpService {
   url = Environments.apiUrl;
@@ -10,12 +10,12 @@ export default class HttpService {
         // const token = localStorage.getItem('auth-token');
 
         if (token) {
-          config.headers["Authorization"] = `Bearer ${token}`;
+          config.headers['Authorization'] = `Bearer ${token}`;
         }
 
         config.headers = {
-          Accept: "application/json",
-          "Content-Type": "application/json",
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
         };
 
         return config;
@@ -26,7 +26,7 @@ export default class HttpService {
     );
   }
 
-  async get(endpoint, id = "") {
+  async get(endpoint, id = '') {
     return await axios.get(`${this.url}/${endpoint}/${id}`);
   }
 

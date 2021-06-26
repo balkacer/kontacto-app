@@ -1,10 +1,10 @@
-import React from "react";
-import { View, Text, TouchableOpacity } from "react-native";
-import { Color, Style } from "../tools";
+import React from 'react';
+import { View, Text, TouchableOpacity } from 'react-native';
+import { Color, Style } from '../tools';
 
 const ButtonComponent = ({
-  caption = "Unnamed",
-  onPress = () => console.log("hello"),
+  caption = 'Unnamed',
+  onPress = () => console.log('hello'),
   color = Color.ABSOLUTE_WHITE,
 }) => {
   return (

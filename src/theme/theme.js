@@ -1,4 +1,4 @@
-import Color from "../tools/colors";
+import Color from '../tools/colors';
 
 const Theme = {
   colorPrimary: Color.MEDIUM_AQUA_MARINE,
@@ -8,8 +8,8 @@ const Theme = {
   colorDefaultComponentBackground: Color.QUICK_SILVER,
   colorDefaultComponentText: Color.GHOST_WHITE,
   colorBackground: Color.ABSOLUTE_WHITE,
-  colorDisabled: Color.SPACE_CANDENT_DISABLED,
-  colorDisabledText: Color.SPACE_CANDENT_DISABLED_TEXT,
+  colorDisabled: Color.GHOST_WHITE,
+  colorDisabledText: Color.QUICK_SILVER,
 };
 
 export default Theme;

@@ -1,17 +1,17 @@
-import { StyleSheet } from "react-native";
-import Theme from "../theme/theme";
+import { StyleSheet } from 'react-native';
+import Theme from '../theme/theme';
 
 const Styles = StyleSheet.create({
   screen: {
     flex: 1,
     paddingTop: 40,
-    alignItems: "center",
+    alignItems: 'center',
     paddingHorizontal: 20,
     backgroundColor: Theme.colorBackground
   },
   formPartView: {
     flex: 1,
-    alignItems: "center",
+    alignItems: 'center',
     bottom: 0,
     height: 522
   },
@@ -24,7 +24,7 @@ const Styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 15,
     fontSize: 16,
-    width: "100%"
+    width: '100%'
   },
   image: {
     width: 150, 
@@ -40,9 +40,9 @@ const Styles = StyleSheet.create({
     backgroundColor: Theme.colorDefaultComponentBackground,
     marginBottom: 20,
     padding: 20,
-    width: "100%",
+    width: '100%',
     display: 'flex',
-    alignItems: "center"
+    alignItems: 'center'
   },
   btnText: {
     fontSize: 16,
@@ -78,31 +78,31 @@ const Styles = StyleSheet.create({
     marginRight: 10
   },
   row: {
-    width: "100%",
-    maxWidth: "100%",
-    width: "100%",
-    display: "flex",
-    flexDirection: "row",
+    width: '100%',
+    maxWidth: '100%',
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'row',
   },
   column_50: {
-    width: "50%",
-    display: "flex",
-    flexDirection: "column"
+    width: '50%',
+    display: 'flex',
+    flexDirection: 'column'
   },
   column_100: {
-    width: "100%",
-    display: "flex",
-    flexDirection: "column"
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'column'
   },
   column_25: {
-    width: "25%",
-    display: "flex",
-    flexDirection: "column"
+    width: '25%',
+    display: 'flex',
+    flexDirection: 'column'
   },
   column_75: {
-    width: "75%",
-    display: "flex",
-    flexDirection: "column"
+    width: '75%',
+    display: 'flex',
+    flexDirection: 'column'
   }
 });
 

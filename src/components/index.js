@@ -1,8 +1,8 @@
-import ButtonComponent from "./Button";
+import ButtonComponent from './Button';
 export const Button = ButtonComponent;
 
-import FormMultipartsComponent from "./FormMultiparts";
+import FormMultipartsComponent from './Forms/FormMultiparts';
 export const FormMultiparts = FormMultipartsComponent;
 
-import ImagePickerComponent from "./ImagePicker";
+import ImagePickerComponent from './ImagePicker';
 export const ImagePicker = ImagePickerComponent;

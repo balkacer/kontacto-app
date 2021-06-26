@@ -1,6 +1,6 @@
-import { createStackNavigator } from "react-navigation-stack";
-import { createAppContainer } from "react-navigation";
-import { Home, SignUp } from "../screens";
+import { createStackNavigator } from 'react-navigation-stack';
+import { createAppContainer } from 'react-navigation';
+import { Home, SignUp } from '../screens';
 
 const options = {
   headerShown: false
