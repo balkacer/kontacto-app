@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Image, Platform, TouchableOpacity } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
-import { Color, Style } from '../tools';
+import { Color, Style, Convertor } from '../tools';
 
-export default function ImagePickerComponent() {
+const ImagePickerComponent = ({onSelectImage = (imageUri) => imageUri}) => {
   const [image, setImage] = useState(null);
 
   useEffect(() => {
@@ -17,18 +17,23 @@ export default function ImagePickerComponent() {
     })();
   }, []);
 
+  const toBase64 = (imgUri) => {
+    return new Convertor(imgUri).stringToBase64;
+  };
+
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsEditing: true,
       aspect: [4, 4],
       quality: 1,
     });
 
-    console.log(result);
-
+    
     if (!result.cancelled) {
       setImage(result.uri);
+      const img64 = toBase64(result.uri);
+      onSelectImage(img64);
     }
   };
 
@@ -42,3 +47,5 @@ export default function ImagePickerComponent() {
     </TouchableOpacity>
   );
 }
+
+export default ImagePickerComponent;
