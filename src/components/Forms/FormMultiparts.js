@@ -119,14 +119,14 @@ export default class FormMultipartComponent extends Component {
   onSubmit() {
     const data = Object.assign({}, this.state);
     delete data['currentFormPart'];
-    const formIsValid = this.formIsValid();
+    const formIsValid = this.formPartIsValid();
 
-    if(formIsValid) {
+    if (formIsValid) {
       return data
     }
   }
 
-  formIsValid() {
+  formPartIsValid() {
     const form = this.props.items[this.currentFormPartPosition];
 
     form.map(control => {
@@ -144,7 +144,7 @@ export default class FormMultipartComponent extends Component {
   }
 
   toNextPart = () => {
-    const formIsValid = this.formIsValid();
+    const formIsValid = this.formPartIsValid();
     console.log(formIsValid);
 
     if (this.currentFormPartPosition !== this.numItems - 1 && formIsValid) {
