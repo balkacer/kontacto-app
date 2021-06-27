@@ -102,11 +102,15 @@ const form = [
 export default class SignUpScreen extends Component {
 
   httpSv = new HttpService();
+  userImage = null;
 
   signUp = (user) => {
-    this.httpSv.post('user', user).then((res) => {
-      ToastAndroid.show(res.message, ToastAndroid.SHORT);
-    }).catch(err => ToastAndroid.show(err.message, ToastAndroid.SHORT));
+    user.image = this.userImage;
+    console.log(user);
+
+    // this.httpSv.post('user', user).then((res) => {
+    //   ToastAndroid.show(res.message, ToastAndroid.SHORT);
+    // }).catch(err => ToastAndroid.show(err.message, ToastAndroid.SHORT));
   }
 
   render() {
@@ -114,7 +118,7 @@ export default class SignUpScreen extends Component {
       <View style={[Style.screen, { paddingTop: 80 }]}>
         <Text style={{ color: Theme.colorPrimary, fontSize: 34, fontFamily: 'Louis George Cafe Bold' }}>Sign Up</Text>
         <View style={{ paddingTop: 40, flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-          <ImagePicker />
+          <ImagePicker onSelectImage={image => this.userImage = image} />
           <FormMultiparts items={form} lastBtnCaption='Sign Up' onSubmit={data => this.signUp(data)} />
         </View>
       </View>
