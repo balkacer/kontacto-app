@@ -121,7 +121,9 @@ export default class FormMultipartComponent extends Component {
     delete data['currentFormPart'];
     const formIsValid = this.formIsValid();
 
-    return formIsValid ? data : null;
+    if(formIsValid) {
+      return data
+    }
   }
 
   formIsValid() {
