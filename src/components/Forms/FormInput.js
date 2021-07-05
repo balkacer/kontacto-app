@@ -68,7 +68,8 @@ export default function FormInput({ control }) {
         ),
         date: (
             <DateInput 
-                control={control}
+                value={control.value}
+                label={control.label}
                 onChangeDate={value => control.value = value}
             />
         )
