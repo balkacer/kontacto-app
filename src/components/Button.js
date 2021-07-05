@@ -1,12 +1,12 @@
-import React from "react";
-import { View, Text, TouchableOpacity } from "react-native";
-import { Color, Style } from "../tools";
+import React from 'react';
+import { View, Text, TouchableOpacity } from 'react-native';
+import { Color, Style } from '../tools';
 
-function Button({
-  caption = "Unnamed",
-  onPress = () => console.log("hello"),
+const ButtonComponent = ({
+  caption = 'Unnamed',
+  onPress = () => console.log('hello'),
   color = Color.ABSOLUTE_WHITE,
-}) {
+}) => {
   return (
     <View style={{ margin: 2 }}>
       <TouchableOpacity
@@ -29,4 +29,4 @@ function Button({
   );
 }
 
-export default Button;
+export default ButtonComponent;

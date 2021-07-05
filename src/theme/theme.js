@@ -1,11 +1,15 @@
-import Color from "../tools/colors";
+import Color from '../tools/colors';
 
 const Theme = {
-  colorPrimary: Color.PRIMARY_BLUE,
-  colorSecondary: Color.AQUA,
-  colorThird: Color.PRIMARY_BLUE,
-  colorLight: Color.ABSOLUTE_WHITE,
-  colorDark: Color.ABSOLUTE_BLACK,
+  colorPrimary: Color.MEDIUM_AQUA_MARINE,
+  colorSecondary: Color.MIDDLE_BLUE_GREEN,
+  colorBlack: Color.SPACE_CANDENT,
+  colorWhite: Color.GHOST_WHITE,
+  colorDefaultComponentBackground: Color.QUICK_SILVER,
+  colorDefaultComponentText: Color.GHOST_WHITE,
+  colorBackground: Color.ABSOLUTE_WHITE,
+  colorDisabled: Color.GHOST_WHITE,
+  colorDisabledText: Color.QUICK_SILVER,
 };
 
 export default Theme;
