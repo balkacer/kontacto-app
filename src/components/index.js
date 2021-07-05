@@ -1,8 +1,3 @@
-import ButtonComponent from './Button';
-export const Button = ButtonComponent;
-
-import FormMultipartsComponent from './Forms/FormMultiparts';
-export const FormMultiparts = FormMultipartsComponent;
-
-import ImagePickerComponent from './ImagePicker';
-export const ImagePicker = ImagePickerComponent;
+export { default as FormMultiparts } from './Forms/FormMultiparts';
+export { default as FormInput } from './Forms/FormInput';
+export { default as Button } from './Button';
