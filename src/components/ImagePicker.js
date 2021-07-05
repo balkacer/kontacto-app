@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Image, Platform, TouchableOpacity } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
-import { Color, Style, Convertor } from '../tools';
+import { Style, Convertor } from '../tools';
 
 const ImagePickerComponent = ({onSelectImage = (imageUri) => imageUri}) => {
   const [image, setImage] = useState(null);
@@ -17,33 +17,32 @@ const ImagePickerComponent = ({onSelectImage = (imageUri) => imageUri}) => {
     })();
   }, []);
 
-  const toBase64 = (imgUri) => {
-    return new Convertor(imgUri).stringToBase64;
-  };
-
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsEditing: true,
-      aspect: [4, 4],
+      aspect: [1, 1],
       quality: 1,
+      base64: true
     });
 
-    
+    ;
+
     if (!result.cancelled) {
       setImage(result.uri);
-      const img64 = toBase64(result.uri);
+      const type = String(result.uri).split('.').lastItem;
+      const img64 = `data:image/${type};base64,${result.base64}`;
       onSelectImage(img64);
     }
   };
 
   return (
     <TouchableOpacity onPress={pickImage}>
-        <Image
-            style={Style.image}
-            source={{ uri: image }}
-            defaultSource={require('../../assets/img/default.png')}
-        />
+      <Image
+        style={Style.image}
+        source={{ uri: image }}
+        defaultSource={require('../../assets/img/default.png')}
+      />
     </TouchableOpacity>
   );
 }
