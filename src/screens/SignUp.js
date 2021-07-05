@@ -1,16 +1,19 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { View, Text } from 'react-native';
 import { Style } from '../tools';
 import Theme from '../theme/theme';
 import HttpService from '../service';
-import { FormMultiparts, ImagePicker } from '../components';
+import FormMultiparts from '../components/Forms/FormMultiparts';
+import ImagePicker from '../components/ImagePicker';
+import { useState } from 'react';
 
 const form = [
   [
     {
       property: 'firstName',
       label: 'First name',
-      valueType: 'name',
+      value: 'Gosh',
+      type: 'name',
       validations: {
         isRequired: true,
       }
@@ -18,13 +21,15 @@ const form = [
     {
       property: 'secondName',
       label: 'Second name',
-      valueType: 'name',
+      value: 'Rap',
+      type: 'name',
       validations: null
     },
     {
       property: 'firstSurname',
       label: 'First surname',
-      valueType: 'name',
+      value: 'God',
+      type: 'name',
       validations: {
         isRequired: true,
       }
@@ -32,7 +37,8 @@ const form = [
     {
       property: 'secondSurname',
       label: 'Second surname',
-      valueType: 'name',
+      value: 'nop',
+      type: 'name',
       validations: null
     }
   ],
@@ -40,7 +46,8 @@ const form = [
     {
       property: 'username',
       label: 'Username',
-      valueType: 'username',
+      value: 'makuttico',
+      type: 'username',
       validations: {
         isRequired: true,
       }
@@ -48,7 +55,8 @@ const form = [
     {
       property: 'email',
       label: 'Email',
-      valueType: 'email',
+      value: 'enmh@mail.com',
+      type: 'email',
       validations: {
         isRequired: true,
       }
@@ -56,7 +64,8 @@ const form = [
     {
       property: 'password',
       label: 'Pasword',
-      valueType: 'password',
+      value: '12345678',
+      type: 'password',
       validations: {
         isRequired: true,
         hasMinLengthOf: 8
@@ -65,9 +74,11 @@ const form = [
     {
       property: 'confirmPassword',
       label: 'Confirm Pasword',
-      valueType: 'password',
+      value: '12345678',
+      type: 'password',
+      notToSubmit: true,
       validations: {
-        isMatchWith: 'password'
+        isMatchWith: 'password',
       }
     }
   ],
@@ -75,13 +86,15 @@ const form = [
     {
       property: 'work',
       label: 'Work Name',
-      valueType: 'name',
+      value: 'todo a 10',
+      type: 'name',
       validations: null
     },
     {
       property: 'age',
       label: 'Age',
-      valueType: 'number',
+      value: '22',
+      type: 'number',
       validations: {
         isRequiredd: true,
         hasMinValueOf: 10,
@@ -91,37 +104,39 @@ const form = [
     {
       property: 'birthday',
       label: 'Birthday',
-      valueType: 'date',
+      value: '2021-07-25',
+      type: 'date',
       validations: {
-        hasMinValueOf: 10
+        isRequired: true
       }
     },
   ]
 ]
 
-export default class SignUpScreen extends Component {
+const SignUpScreen = () => {
+  // const httpSv = new HttpService();
+  const [userImg, setUserImg] = useState(null);
 
-  httpSv = new HttpService();
-  userImage = null;
-
-  signUp = (user) => {
-    user.image = this.userImage;
-    console.log(user);
+  const signUp = (user) => {
+    if (user) {
+      user.image = userImg;
+      console.log(user);
+    }
 
     // this.httpSv.post('user', user).then((res) => {
     //   ToastAndroid.show(res.message, ToastAndroid.SHORT);
     // }).catch(err => ToastAndroid.show(err.message, ToastAndroid.SHORT));
   }
-
-  render() {
-    return (
-      <View style={[Style.screen, { paddingTop: 80 }]}>
-        <Text style={{ color: Theme.colorPrimary, fontSize: 34, fontFamily: 'Louis George Cafe Bold' }}>Sign Up</Text>
-        <View style={{ paddingTop: 40, flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-          <ImagePicker onSelectImage={image => this.userImage = image} />
-          <FormMultiparts items={form} lastBtnCaption='Sign Up' onSubmit={data => this.signUp(data)} />
-        </View>
+  
+  return (
+    <View style={[Style.screen, { paddingTop: 80 }]}>
+      <Text style={{ color: Theme.colorPrimary, fontSize: 34, fontFamily: 'Louis George Cafe Bold' }}>Sign Up</Text>
+      <View style={{ paddingTop: 40, flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <ImagePicker onSelectImage={(img) => setUserImg(img)} />
+        <FormMultiparts items={form} submitBtnCaption='Sign Up' onSubmit={data => signUp(data)} />
       </View>
-    );
-  }
+    </View>
+  );
 }
+
+export default SignUpScreen;
