@@ -9,7 +9,7 @@ export default class FormValidator {
         maxLength: (control, acepted) => `The field ${control} has a length granted than ${acepted}`,
         minValue: (control, acepted) => `The field ${control} is less than ${acepted}`,
         maxValue: (control, acepted) => `The field ${control} is granted than ${acepted}`,
-        matchWith: (control, acepted) => `The field ${control} don't match with ${acepted}`
+        matchWith: (control, acepted) => `The fields ${control} and  ${acepted} don't match`
     };
 
     constructor(form) {
@@ -45,25 +45,43 @@ export default class FormValidator {
         if (cValidations.hasMinLengthOf && cValue?.length < cValidations.hasMinLengthOf) {
             ToastAndroid.show(this.validations.minLength(control.label, cValidations.hasMinLengthOf), ToastAndroid.SHORT);
             return false;
-        } else if (cValidations.hasMaxLengthOf && cValue?.length > cValidations.hasMaxLengthOf) {
+        }
+        
+        if (cValidations.hasMaxLengthOf && cValue?.length > cValidations.hasMaxLengthOf) {
             ToastAndroid.show(this.validations.maxLength(control.label, cValidations.hasMaxLengthOf), ToastAndroid.SHORT);
             return false;
-        } else if (cValidations.hasMinValueOf && Number(cValue) < cValidations.hasMinValueOf) {
+        }
+        
+        if (cValidations.hasMinValueOf && Number(cValue) < cValidations.hasMinValueOf) {
             ToastAndroid.show(this.validations.minValue(control.label, cValidations.hasMinValueOf), ToastAndroid.SHORT);
             return false;
-        } else if (cValidations.hasMaxValueOf && Number(cValue) > cValidations.hasMaxValueOf) {
+        }
+        
+        if (cValidations.hasMaxValueOf && Number(cValue) > cValidations.hasMaxValueOf) {
             ToastAndroid.show(this.validations.maxValue(control.label, cValidations.hasMaxValueOf), ToastAndroid.SHORT);
             return false;
-        } else if (cValidations.isRequired && this.controlIsEmpty(control)) {
+        }
+        
+        if (cValidations.isRequired && this.controlIsEmpty(control)) {
             ToastAndroid.show(this.validations.required(control.label), ToastAndroid.SHORT);
             return false;
-        }         
-        // else if (cValidations.isMatchWith && this.form[cValidations.isMatchWith].value !== cValue) { // TODO: Obtener el valor del campo a hacer Match.
-        //     ToastAndroid.show(this.validations.matchWith(control.label, cValidations.isMatchWith), ToastAndroid.SHORT);
-        //     return false;
-        // } 
-        else {
-            return true;
         }
+
+        if (cValidations.isMatchWith)
+        {
+            let isValid = true;
+
+            for (let matchWith of this.form) {                
+                if (matchWith.property === cValidations.isMatchWith && matchWith.value !== cValue) {
+                    ToastAndroid.show(this.validations.matchWith(control.label, matchWith.label), ToastAndroid.SHORT);
+                    isValid = false;
+                    break;
+                }
+            }
+
+            if (!isValid) return false;
+        }
+        
+        return true;
     }
 }
