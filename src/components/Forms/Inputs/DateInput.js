@@ -4,10 +4,10 @@ import Theme from '../../../theme/theme';
 import { TouchableOpacity, TextInput } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
-const DateInput = (props) => {
+const DateInput = ({ value, placeholder, onChangeDate = (d) => d }, editable) => {
 
   const getDate = (position) => {
-    let dateValue = !!props.value ? props.value : new Date().toISOString().slice(0,10);
+    let dateValue = !!value ? value : new Date().toISOString().slice(0,10);
     const dateInfo = [];
     String(dateValue).split('-').map(d => {
       dateInfo.push(Number(d));
@@ -16,13 +16,15 @@ const DateInput = (props) => {
   } 
   
   const [show, setShow] = useState(false);
-  const [date, setDate] = useState(new Date(getDate(0), getDate(1) - 1, getDate(2)));
+  const [date, setDate] = useState(getDate(0) ? new Date(getDate(0), getDate(1) - 1, getDate(2)) :  new Date());
   
 
   const onChange = (d) => {
     setShow(false);
-    if (d) setDate(d);
-    props.onChangeDate(date.toISOString().slice(0,10));
+    if (d) {
+      setDate(d);
+      onChangeDate(d.toISOString().slice(0,10));
+    }
   }
 
   return (
@@ -35,15 +37,14 @@ const DateInput = (props) => {
           onChange={(e,d) => onChange(d)}
         />
       }
-      <TouchableOpacity onPress={() => setShow(true)} activeOpacity={1}>
+      <TouchableOpacity onPress={() => setShow(editable)} activeOpacity={1}>
         <TextInput
-          style={Style.input}
-          placeholderTextColor={Theme.colorInputsPlaceholder}
-          placeholder={props.label}
+          style={editable ? Style.input : Style.disabledInput}
+          placeholderTextColor={editable ? Theme.colorInputsPlaceholder : Theme.colorInputsPlaceholderDisabled}
+          placeholder={placeholder}
           value={date.toISOString().slice(0,10)}
           editable={false}
           pointerEvents={'none'}
-          onChangeText={(date) => props.onChangeDate(date)}
         />
       </TouchableOpacity>
     </>
