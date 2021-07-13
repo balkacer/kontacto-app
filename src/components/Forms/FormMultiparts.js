@@ -12,27 +12,41 @@ import FormInput from './FormInput';
 export default class FormMultipartComponent extends Component {
   currentPosition = 0;
   numItems = this.props.items.length;
+  isMultipart = false;
 
   state = {
     currentPosition: []
   }
-
+  
   constructor(props) {
     super(props);
+    this.isMultipart = this.props.items[0][0] != undefined;
   }
 
   showCurrentFormPart() {
     const form = [];
-
-    this.props.items[this.currentPosition].map((item, inputIndex) => {
-      const input = (
-        <View style={{ width: '100%' }} key={`form-control-${this.currentPosition}-${inputIndex}`}>
-          <FormInput control={item} />
-        </View>
-      );
-
-      form.push(input);
-    });
+    
+    if (this.isMultipart) {
+      this.props.items[this.currentPosition].map((item, inputIndex) => {
+        const input = (
+          <View style={{ width: '100%' }} key={`form-control-${this.currentPosition}-${inputIndex}`}>
+            <FormInput control={item} />
+          </View>
+        );
+  
+        form.push(input);
+      });
+    } else {
+      this.props.items.map((item, inputIndex) => {
+        const input = (
+          <View style={{ width: '100%' }} key={`form-control-${this.currentPosition}-${inputIndex}`}>
+            <FormInput control={item} />
+          </View>
+        );
+  
+        form.push(input);
+      });
+    }    
 
     const currentFormPart = <View style={[Style.column_100]}>{form}</View>;
 
@@ -42,13 +56,21 @@ export default class FormMultipartComponent extends Component {
   getFormData() {
     const data = {}
 
-    this.props.items.map(form => {
-      form.map(control => {
+    if (this.isMultipart) {
+      this.props.items.map(form => {
+        form.map(control => {
+          if (!control.notToSubmit) {
+            data[control.property] = control.value;
+          }
+        });
+      });
+    } else {
+      this.props.items.map(control => {
         if (!control.notToSubmit) {
           data[control.property] = control.value;
         }
       });
-    });
+    }    
 
     return data;
   }
@@ -60,8 +82,13 @@ export default class FormMultipartComponent extends Component {
   }
 
   formIsValid() {
-    const form = this.props.items[this.currentPosition];
-    return new FormValidator(form).formIsValid();
+    let form = null;
+    if (this.isMultipart) {
+      form = this.props.items[this.currentPosition];
+    } else {
+      form = this.props.items;
+    }
+    return new FormValidator(form).formIsValid();    
   }
 
   toPreviousPart = () => {
@@ -88,6 +115,7 @@ export default class FormMultipartComponent extends Component {
       <ScrollView vertical showsVerticalScrollIndicator={false} pagingEnabled style={{ width: '100%' }}>
         <View style={Style.formPartView}>
           <View style={Style.row}>{this.state.currentFormPart}</View>
+          {this.isMultipart &&
           <View style={[Style.row, Style.btnContainer, { justifyContent: 'space-between' }]}>
             <TouchableOpacity style={[Style.btn, this.currentPosition === 0 ? Style.btnDisabled : Style.btnSecondary, { width: '47%' }]}
               onPress={this.currentFormPartPosition === 0 ? () => { } : this.toPreviousPart}>
@@ -101,7 +129,13 @@ export default class FormMultipartComponent extends Component {
               <TouchableOpacity style={[Style.btn, Style.btnPrimary, { width: '47%' }]} onPress={() => this.props.onSubmit(this.onSubmit())}>
                 <Text style={Style.btnText}>{this.props.submitBtnCaption}</Text>
               </TouchableOpacity>}
-          </View>
+          </View>}
+          {!this.isMultipart &&
+          <View style={[Style.row, Style.btnContainer, { justifyContent: 'space-between' }]}>
+            <TouchableOpacity style={[Style.btn, Style.btnPrimary, { width: '100%' }]} onPress={() => this.props.onSubmit(this.onSubmit())}>
+              <Text style={Style.btnText}>{this.props.submitBtnCaption}</Text>
+            </TouchableOpacity>
+          </View>}
         </View>
       </ScrollView>
     );
