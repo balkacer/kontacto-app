@@ -10,6 +10,8 @@ const Theme = {
   colorBackground: Color.ABSOLUTE_WHITE,
   colorDisabled: Color.GHOST_WHITE,
   colorDisabledText: Color.QUICK_SILVER,
+  colorInputsPlaceholder: Color.BLUE_CRAYOLA,
+  colorInputsPlaceholderDisabled: Color.MIDDLE_BLUE_GREEN
 };
 
 export default Theme;
