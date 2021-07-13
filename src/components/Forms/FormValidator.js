@@ -40,46 +40,46 @@ export default class FormValidator {
         const cValue = control.value;
         const cValidations = control.validations;
 
-        if(!cValidations) return true;
+        if ( !cValidations || control.isDisabled ) return true;
 
-        if (cValidations.hasMinLengthOf && cValue?.length < cValidations.hasMinLengthOf) {
+        if ( cValidations.hasMinLengthOf && cValue?.length < cValidations.hasMinLengthOf ) {
             ToastAndroid.show(this.validations.minLength(control.label, cValidations.hasMinLengthOf), ToastAndroid.SHORT);
             return false;
         }
         
-        if (cValidations.hasMaxLengthOf && cValue?.length > cValidations.hasMaxLengthOf) {
+        if ( cValidations.hasMaxLengthOf && cValue?.length > cValidations.hasMaxLengthOf ) {
             ToastAndroid.show(this.validations.maxLength(control.label, cValidations.hasMaxLengthOf), ToastAndroid.SHORT);
             return false;
         }
         
-        if (cValidations.hasMinValueOf && Number(cValue) < cValidations.hasMinValueOf) {
+        if ( cValidations.hasMinValueOf && Number( cValue ) < cValidations.hasMinValueOf ) {
             ToastAndroid.show(this.validations.minValue(control.label, cValidations.hasMinValueOf), ToastAndroid.SHORT);
             return false;
         }
         
-        if (cValidations.hasMaxValueOf && Number(cValue) > cValidations.hasMaxValueOf) {
-            ToastAndroid.show(this.validations.maxValue(control.label, cValidations.hasMaxValueOf), ToastAndroid.SHORT);
+        if ( cValidations.hasMaxValueOf && Number( cValue ) > cValidations.hasMaxValueOf ) {
+            ToastAndroid.show(this.validations.maxValue( control.label, cValidations.hasMaxValueOf ), ToastAndroid.SHORT);
             return false;
         }
         
-        if (cValidations.isRequired && this.controlIsEmpty(control)) {
-            ToastAndroid.show(this.validations.required(control.label), ToastAndroid.SHORT);
+        if ( cValidations.isRequired && this.controlIsEmpty( control ) ) {
+            ToastAndroid.show( this.validations.required( control.label ), ToastAndroid.SHORT );
             return false;
         }
 
-        if (cValidations.isMatchWith)
+        if ( cValidations.isMatchWith )
         {
             let isValid = true;
 
-            for (let matchWith of this.form) {                
-                if (matchWith.property === cValidations.isMatchWith && matchWith.value !== cValue) {
-                    ToastAndroid.show(this.validations.matchWith(control.label, matchWith.label), ToastAndroid.SHORT);
+            for ( let matchWith of this.form ) {                
+                if ( matchWith.property === cValidations.isMatchWith && matchWith.value !== cValue ) {
+                    ToastAndroid.show( this.validations.matchWith(control.label, matchWith.label ), ToastAndroid.SHORT );
                     isValid = false;
                     break;
                 }
             }
 
-            if (!isValid) return false;
+            if ( !isValid ) return false;
         }
         
         return true;
