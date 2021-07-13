@@ -1,24 +1,34 @@
 import React, { Component } from 'react';
-import { View, Text, ImageBackground } from 'react-native';
+import { View, Text } from 'react-native';
 import { Style } from '../tools';
 import HttpService from '../service';
-import { Button } from '../components';
+import ToolBar from '../components/ToolBar';
+import TabBar from '../components/TabBar';
+import Dimentions from '../components/Dimentions';
 
 export default class HomeScreen extends Component {
+  state = {
+    activeTab: 'home'
+  }
+
+  screenHeight = Dimentions.screenHeight - ( Style.tabBar.height + Style.toolBar.height );
 
   httpSv = new HttpService();
 
   render () {
     return (
-      <ImageBackground
-        source={{ uri: 'https://i.pinimg.com/originals/20/79/03/2079033abc8314be554f9d24f562a199.jpg' }}
-        style={{ width: '100%', height: '100%' }}
-      >
-        <View style={Style.screen}>
-          <Text style={{color: '#FFF'}}>Home</Text>
-          <Button caption='Sign Up' onPress={() => this.props.navigation.navigate('SignUp')}/>
-        </View>
-      </ImageBackground>
+    <View style={{ marginTop: Dimentions.statusbarHeight }}>
+      <ToolBar appTitle='Kontacto' tabs={[ {icon: 'bell', route: 'notifications'},  {icon: 'cog', route: 'settings'} ]}>
+      </ToolBar>
+      <View style={[Style.screen, { minHeight: this.screenHeight, maxHeight: this.screenHeight }]}>
+        <Text style={{fontSize: 18}}>{this.state.activeTab}</Text>
+      </View>
+      <TabBar
+        tabs={[ {icon: 'star', route: 'favorites'},  {icon: 'home', route: 'home'},  {icon: 'account', route: 'contacts'} ]}
+        defaultTab='home'
+        onTabChange={(tab) => this.setState({ activeTab: tab})} />
+    </View>      
     );
   }
 }
+
