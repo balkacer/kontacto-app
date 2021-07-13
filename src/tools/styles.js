@@ -4,10 +4,11 @@ import Theme from '../theme/theme';
 const Styles = StyleSheet.create({
   screen: {
     flex: 1,
-    paddingTop: 40,
     alignItems: 'center',
-    paddingHorizontal: 20,
-    backgroundColor: Theme.colorBackground
+    backgroundColor: Theme.colorBackground,
+    margin: 0,
+    paddingBottom: 10,
+    paddingHorizontal: 10
   },
   formPartView: {
     flex: 1,
@@ -20,6 +21,17 @@ const Styles = StyleSheet.create({
     color: Theme.colorBlack,
     borderRadius: 15,
     backgroundColor: Theme.colorWhite,
+    marginBottom: 20,
+    paddingHorizontal: 20,
+    paddingVertical: 15,
+    fontSize: 16,
+    width: '100%'
+  },
+  disabledInput: {
+    fontFamily: 'Louis George Cafe Bold',
+    color: Theme.colorDisabledText,
+    borderRadius: 15,
+    backgroundColor: Theme.colorDisabled,
     marginBottom: 20,
     paddingHorizontal: 20,
     paddingVertical: 15,
@@ -103,6 +115,37 @@ const Styles = StyleSheet.create({
     width: '75%',
     display: 'flex',
     flexDirection: 'column'
+  },
+  toolBar: {
+    width: '100%',
+    backgroundColor: Theme.colorBlack,
+    height: 65,
+    paddingHorizontal: 25,
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    flexDirection: 'row',
+    paddingVertical: 0
+  },
+  tabBar: {
+    width: '100%',
+    backgroundColor: Theme.colorBlack,
+    height: 65,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 25
+  },
+  tab: {
+    backgroundColor: Theme.colorBackground,
+    width: 50,
+    height: 50,
+    borderRadius: 100,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingBottom: .5
   }
 });
 
