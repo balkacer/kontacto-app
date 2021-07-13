@@ -3,6 +3,7 @@ import { StatusBar } from 'expo-status-bar';
 import Navigator from './src/routes';
 import * as Font from 'expo-font';
 import AppLoading from 'expo-app-loading';
+import Theme from './src/theme/theme';
 
 export default class App extends Component {
   state = {
@@ -26,7 +27,7 @@ export default class App extends Component {
           ? <AppLoading />
           : <Navigator />
         }
-        <StatusBar style='dark' />
+        <StatusBar style='light' backgroundColor={Theme.colorInputsPlaceholder} />
       </>
     );
   }
