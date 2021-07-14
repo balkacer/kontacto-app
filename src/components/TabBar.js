@@ -20,7 +20,8 @@ const TabBar = ({ tabs, onTabChange = (t) => t, defaultTab }) => {
                 icon={tab.icon}
                 route={tab.route}
                 onPress={value => activateTab(value)}
-            />);
+            />
+        );
     });
 
     return (

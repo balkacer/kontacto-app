@@ -1,17 +1,43 @@
-import React from 'react';
-import { View, TouchableOpacity } from 'react-native';
+import React, { useEffect, useRef } from 'react';
+import { View, TouchableOpacity, Animated } from 'react-native';
 import { Icon } from 'react-native-elements';
 import Theme from '../theme/theme';
 import { Style } from "../tools";
 
 const Tab = ({ icon, route, conectionPosition = 'up', onPress = (t) => t, isActive }) => {
+    
+    const borderRadius = useRef(new Animated.Value(0)).current;
+
+    const onActiveTab = () => {
+        Animated.timing(
+            borderRadius,
+            {
+                toValue: 22,
+                duration: 200,
+                useNativeDriver: true
+            }
+        ).start(() => {
+            Animated.timing(
+                borderRadius,
+                {
+                    toValue: 18,
+                    duration: 300,
+                    useNativeDriver: true
+                }).start()
+        });
+
+        onPress(route);
+    }
+
     return (
         <View style={{padding: 0, margin: 0}}>
-            <View
+            <Animated.View
                 style={{
+                    zIndex: -2,
+                    marginLeft: -25,
                     opacity: isActive ? 1 : 0, 
                     backgroundColor: Theme.colorBackground, 
-                    width: Style.tab.width, 
+                    width: Style.tab.width * 2,
                     height: Style.tabBar.height / 2, 
                     position: 'absolute', 
                     marginTop: conectionPosition === 'up'
@@ -21,9 +47,39 @@ const Tab = ({ icon, route, conectionPosition = 'up', onPress = (t) => t, isActi
                             : 0 
                 }}
             >
-            </View>
+            </Animated.View>
+            <Animated.View
+                style={{
+                    zIndex: -2,
+                    borderTopLeftRadius: conectionPosition === 'up' ? borderRadius : 0,
+                    borderBottomLeftRadius: conectionPosition === 'down' ? borderRadius : 0,
+                    opacity: isActive ? 1 : 0,
+                    backgroundColor: Theme.colorBlack,
+                    width: Style.tab.width,
+                    height: Style.tabBar.height,
+                    position: 'absolute',
+                    marginLeft: 50,
+                    marginTop: conectionPosition === 'up' ? - (Style.tabBar.height / 8.8) : conectionPosition === 'down' ? - (Style.toolBar.height / 8.8) : 0 
+                }}
+            >
+            </Animated.View>
+            <Animated.View
+                style={{
+                    zIndex: -2,
+                    borderTopRightRadius: conectionPosition === 'up' ? borderRadius : 0,
+                    borderBottomRightRadius: conectionPosition === 'down' ? borderRadius : 0,
+                    opacity: isActive ? 1 : 0,
+                    backgroundColor: Theme.colorBlack,
+                    width: Style.tab.width,
+                    height: Style.tabBar.height,
+                    position: 'absolute',
+                    marginLeft: -50,
+                    marginTop: conectionPosition === 'up' ? - (Style.tabBar.height / 8.8) : conectionPosition === 'down' ? - (Style.toolBar.height / 8.8) : 0 
+                }}
+            >
+            </Animated.View>
             <TouchableOpacity
-                onPress={() => onPress(route)}
+                onPress={() => onActiveTab()}
                 style={[Style.tab,  !isActive ? { backgroundColor: Theme.colorBlack } : {}]}
                 activeOpacity={1}
             >
