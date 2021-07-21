@@ -1,14 +1,15 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { View, TouchableOpacity, Animated } from 'react-native';
 import { Icon } from 'react-native-elements';
 import Theme from '../theme/theme';
 import { Style } from "../tools";
 
-const Tab = ({ icon, route, conectionPosition = 'up', onPress = (t) => t, isActive }) => {
+const Tab = ({ icon = '', route = '', conectionPosition = 'up', onPress = (t) => t, isActive = false }) => {
 
     const borderRadius = useRef(new Animated.Value(0)).current;
 
     const onActiveTab = () => {
+        if (isActive && conectionPosition == 'up') return;
 
         borderRadius.setValue(0);
 
@@ -31,7 +32,7 @@ const Tab = ({ icon, route, conectionPosition = 'up', onPress = (t) => t, isActi
 
         onPress(route);
     }
-
+    
     return (
         <View style={{ padding: 0, margin: 0 }}>
             <Animated.View
