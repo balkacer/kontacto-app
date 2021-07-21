@@ -8,7 +8,6 @@ const Styles = StyleSheet.create({
     backgroundColor: Theme.colorBackground,
     margin: 0,
     paddingBottom: 10,
-    paddingHorizontal: 10
   },
   formPartView: {
     flex: 1,
@@ -146,6 +145,17 @@ const Styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     paddingBottom: .5
+  },
+  contactCard: {
+    borderRadius: 15,
+    backgroundColor: Theme.colorSecondary,
+    padding: 10,
+    marginVertical: 5,
+    width: '100%',
+    height: 'auto',
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center'
   }
 });
 
