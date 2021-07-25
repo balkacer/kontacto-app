@@ -4,7 +4,6 @@ import { Style } from '../tools';
 import HttpService from '../service';
 import ToolBar from '../components/ToolBar';
 import TabBar from '../components/TabBar';
-import TabScreen from '../components/TabScreen';
 import Dimentions from '../components/Dimentions';
 import ContactCard from '../components/ContactCard';
 import { ScrollView } from 'react-native';
@@ -16,8 +15,8 @@ export default class HomeScreen extends Component {
 
   contacts = [
     {
-      name: 'Jose',
-      lastName: 'Perez',
+      name: 'Dariela',
+      lastName: 'Rosario',
       image: 'https://cdn.iconscout.com/icon/free/png-256/avatar-373-456325.png'
     },
     {
@@ -92,7 +91,7 @@ export default class HomeScreen extends Component {
     }
   ]
 
-  getContacts(){
+  getContacts() {
     const contactList = [];
     for (let i = 0; i < this.contacts.length; i++) {
       contactList.push(
@@ -110,8 +109,8 @@ export default class HomeScreen extends Component {
     return (
       <View style={{ marginTop: Dimentions.statusbarHeight }}>
         <ToolBar appTitle='Kontacto' tabs={[{ icon: 'bell', route: 'notifications' }, { icon: 'cog', route: 'settings' }]} />
-        <View style={[Style.screen, { minHeight: this.screenHeight, maxHeight: this.screenHeight, padding: 10}]}>
-          <ScrollView vertical style={{width: '100%'}}>
+        <View style={[Style.screen, { minHeight: this.screenHeight, maxHeight: this.screenHeight, padding: 10 }]}>
+          <ScrollView vertical style={{ width: '100%' }}>
             {this.getContacts()}
           </ScrollView>
         </View>

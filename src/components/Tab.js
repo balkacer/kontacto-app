@@ -8,6 +8,10 @@ const Tab = ({ icon = '', route = '', conectionPosition = 'up', onPress = (t) =>
 
     const borderRadius = useRef(new Animated.Value(0)).current;
 
+    useEffect(() => {
+        borderRadius.setValue(18);
+    });
+
     const onActiveTab = () => {
         if (isActive && conectionPosition == 'up') return;
 
