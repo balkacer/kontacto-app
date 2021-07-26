@@ -1,8 +1,9 @@
 import Color from '../tools/colors';
 
 const Theme = {
-  colorPrimary: Color.MEDIUM_AQUA_MARINE,
-  colorSecondary: Color.MIDDLE_BLUE_GREEN,
+  colorPrimary: Color.BLUE_CRAYOLA,
+  colorSecondary: Color.NON_PHOTO_BLUE,
+  colorLightGray: Color.LIGHT_GRAY,
   colorBlack: Color.SPACE_CANDENT,
   colorWhite: Color.GHOST_WHITE,
   colorDefaultComponentBackground: Color.QUICK_SILVER,

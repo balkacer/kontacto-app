@@ -91,7 +91,7 @@ const Tab = ({ icon = '', route = '', conectionPosition = 'up', onPress = (t) =>
                 style={[Style.tab, !isActive ? { backgroundColor: Theme.colorBlack } : {}]}
                 activeOpacity={1}
             >
-                <Icon name={icon} type='material-community' color={!isActive ? Theme.colorBackground : Theme.colorInputsPlaceholder} />
+                <Icon name={icon} type='material-icons' color={!isActive ? Theme.colorBackground : Theme.colorInputsPlaceholder} />
             </TouchableOpacity>
         </View>
     )

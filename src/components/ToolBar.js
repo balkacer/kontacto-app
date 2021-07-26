@@ -1,16 +1,17 @@
 import React, { useState } from "react"
 import { Text, View } from "react-native"
+import Theme from "../theme/theme";
 import { Style } from "../tools";
 import Tab from './Tab';
 
-const ToolBar = ({ appTitle, tabs = null, onTabChange = (t) => t }) => {
+const ToolBar = ({ appTitle, tabs = null, onTabActive = (t) => t }) => {
     const [ activeTab, setActiveTab ] = useState(null);
 
     const tabList = [];
     
     const activateTab = (r) => {
         setActiveTab(r);
-        onTabChange(r);
+        onTabActive(r);
     };
 
     if (tabs)
@@ -19,7 +20,7 @@ const ToolBar = ({ appTitle, tabs = null, onTabChange = (t) => t }) => {
             tabList.push(
                 <Tab
                     isActive={activeTab == tab.route}
-                    key={tab.icon}
+                    key={tab.route}
                     icon={tab.icon}
                     route={tab.route}
                     conectionPosition='down'
@@ -30,8 +31,8 @@ const ToolBar = ({ appTitle, tabs = null, onTabChange = (t) => t }) => {
 
     return (
         <View style={Style.toolBar}>
-            <Text style={{color: '#FFF', fontSize: 24}}>{appTitle}</Text>
-            {tabs != null && <View style={{display: 'flex', justifyContent: 'space-between', flexDirection: 'row', width: (Style.tab.width * 2) + 15}}>{tabList}</View>}
+            <Text style={{color: Theme.colorWhite, fontSize: 24}}>{appTitle}</Text>
+            {tabs != null && <View style={{display: 'flex', justifyContent: 'space-between', flexDirection: 'row', width: (Style.tab.width * tabs.length) + 15}}>{tabList}</View>}
         </View>
     )
 }

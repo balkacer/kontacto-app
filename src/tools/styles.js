@@ -24,7 +24,6 @@ const Styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 15,
     fontSize: 16,
-    width: '100%'
   },
   disabledInput: {
     fontFamily: 'Louis George Cafe Bold',
@@ -38,7 +37,7 @@ const Styles = StyleSheet.create({
     width: '100%'
   },
   image: {
-    width: 150, 
+    width: 150,
     height: 150,
     borderRadius: 150,
     margin: 15,
@@ -146,16 +145,30 @@ const Styles = StyleSheet.create({
     justifyContent: 'center',
     paddingBottom: .5
   },
-  contactCard: {
+  contactCardList: {
     borderRadius: 15,
-    backgroundColor: Theme.colorSecondary,
-    padding: 10,
+    padding: 5,
     marginVertical: 5,
     width: '100%',
     height: 'auto',
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center'
+  },
+  contactCardGrid: {
+    borderRadius: 15,
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center'
+  },
+  notification: {
+    borderRadius: 15,
+    padding: 20,
+    marginVertical: 5,
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'baseline',
   }
 });
 
