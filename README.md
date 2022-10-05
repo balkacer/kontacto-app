@@ -1,2 +1,2 @@
 # Kontacto App
-Social Media to conect with all without save local contact.
+Social Media to connect with all without save local contact.
